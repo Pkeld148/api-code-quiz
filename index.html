@@ -25,32 +25,35 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-<nav class="nav">
-    <a class="nav-link" href="#">High Scores</a>
-
-</nav>
+    <nav class="nav">
+      <a class="nav-link" href="#">High Scores</a>
+    </nav>
     <div class="container">
       <div class="row">
         <div class="col-sm-8">
-          <h2>QUIZ QUESTION TEXT WILL GO HERE?</h2>
+          <h2 id="question">QUIZ QUESTION TEXT WILL GO HERE?</h2>
           <br />
           <p>
-            <button type="button" class="btn btn-primary btn-lg">
+            <button type="button" class="btn btn-primary btn-lg answerButtons"
+            id="answer1">
               Large button
             </button>
           </p>
           <p>
-            <button type="button" class="btn btn-primary btn-lg">
+            <button type="button" class="btn btn-primary btn-lg answerButtons"
+            id="answer2">
               Large button
             </button>
           </p>
           <p>
-            <button type="button" class="btn btn-primary btn-lg">
+            <button type="button" class="btn btn-primary btn-lg answerButtons"
+            id="answer3">
               Large button
             </button>
           </p>
           <p>
-            <button type="button" class="btn btn-primary btn-lg">
+            <button type="button" class="btn btn-primary btn-lg answerButtons"
+            id="answer4">
               Large button
             </button>
           </p>
@@ -58,7 +61,19 @@
       </div>
       <div class="row">
         <div class="col-sm-8">
-          <h2>CORRECT OR INCORRECT TEXT WILL GO HERE?</h2>
+          <h2 id="footer">CORRECT OR INCORRECT TEXT WILL GO HERE?</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mx-auto">
+          <h3 id="start">
+            <button
+              type="button"
+              class="btn btn-primary justify-content-center btn-lg"
+            >
+              Begin Quiz!
+            </button>
+          </h3>
         </div>
       </div>
     </div>
