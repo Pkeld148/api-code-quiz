@@ -55,7 +55,6 @@ var answerChoice = 0;
 var correctAnswer =0;
 var timer = 100;
 
-
 $(document).ready(function () {
   $("p").hide();
   $("form").hide();
@@ -66,47 +65,32 @@ $("#question").text("Welcome to the API Code Quiz! Click the button to begin!");
 $("#footer").text("WARNING: Incorrect answers will deduct 10 seconds!");
 
 $("#start").on("click", function () {
-  console.log("YOU CLICKED BEGIN");
   $("p").show();
   $("#footer").hide();
   $("h3").hide();
   $("#timer").show();
   startTimer();
-
-
   nextQuestion();
-
 });
 
 $("#answer1").on("click", function () {
-  console.log("YOU CLICKED BUTTON 1");
   answerChoice = 1;
   checkAnswer();
-  nextQuestion();
   });
 
 $("#answer2").on("click", function () {
-  console.log("YOU CLICKED BUTTON 2");
   answerChoice = 2;
   checkAnswer();
-
-  nextQuestion();
 });
 
 $("#answer3").on("click", function () {
-  console.log("YOU CLICKED BUTTON 3");
   answerChoice = 3;
   checkAnswer();
-    nextQuestion();
-
 });
 
 $("#answer4").on("click", function () {
-  console.log("YOU CLICKED BUTTON 4");
   answerChoice = 4;
   checkAnswer();
-  nextQuestion();
-
 });
 
 function nextQuestion() {
@@ -124,6 +108,7 @@ function checkAnswer() {
     $("#footer").show();
     $("#footer").text("GOOD JOB!");
     $("#footer").fadeOut(2000);
+    nextQuestion();
     if (i >= quizQuestions.length) {
       endQuiz();
     }
@@ -132,11 +117,11 @@ function checkAnswer() {
     $("#footer").show();
     $("#footer").text("INCORRECT!");
     $("#footer").fadeOut(2000);
-
+    timer -= 10;
+    nextQuestion();
     if (i >= quizQuestions.length) {
       endQuiz();
     }
-
   }
 }
 
@@ -146,7 +131,6 @@ function endQuiz() {
   $("form").show();
   stopTimer();
   $("#timer").hide();
-
   $("#final-score").attr("value", timer);
 }
 
