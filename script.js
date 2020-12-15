@@ -54,6 +54,8 @@ var i = 0;
 var answerChoice = 0;
 var correctAnswer =0;
 var timer = 100;
+var submitScore = [];
+var submitName = [];
 
 $(document).ready(function () {
   $("p").hide();
@@ -91,6 +93,17 @@ $("#answer3").on("click", function () {
 $("#answer4").on("click", function () {
   answerChoice = 4;
   checkAnswer();
+});
+
+$("#submit").on("click", function() {
+  event.preventDefault();
+  var setName = $("#name").val();
+  console.log(setName);
+  $("p").hide();
+
+
+
+
 });
 
 function nextQuestion() {
