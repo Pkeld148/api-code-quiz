@@ -53,9 +53,13 @@ var i = 0;
 
 var answerChoice = 0;
 var correctAnswer =0;
+var timer = 100;
+
 
 $(document).ready(function () {
   $("p").hide();
+  $("form").hide();
+  $("#timer").hide();
 });
 
 $("#question").text("Welcome to the API Code Quiz! Click the button to begin!");
@@ -66,6 +70,9 @@ $("#start").on("click", function () {
   $("p").show();
   $("#footer").hide();
   $("h3").hide();
+  $("#timer").show();
+  startTimer();
+
 
   nextQuestion();
 
@@ -116,13 +123,37 @@ function checkAnswer() {
   if (answerChoice === correctAnswer){
     $("#footer").show();
     $("#footer").text("GOOD JOB!");
-    $("#footer").fadeOut(5000);
+    $("#footer").fadeOut(2000);
+    if (i >= quizQuestions.length) {
+      endQuiz();
+    }
 
   } else {
     $("#footer").show();
     $("#footer").text("INCORRECT!");
-    $("#footer").fadeOut(5000);
+    $("#footer").fadeOut(2000);
+
+    if (i >= quizQuestions.length) {
+      endQuiz();
+    }
 
   }
+}
 
+function endQuiz() {
+  $("#question").text("GAME OVER!  How did you do?");
+  $("p").hide();
+  $("form").show();
+  stopTimer();
+}
+
+function startTimer() {
+timerInterval = setInterval(function() {
+timer--;
+  $("#timer").text(timer);
+}, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
 }
