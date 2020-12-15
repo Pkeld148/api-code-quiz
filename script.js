@@ -81,6 +81,7 @@ $("#answer1").on("click", function () {
 $("#answer2").on("click", function () {
   console.log("YOU CLICKED BUTTON 2");
   answerChoice = 2;
+  checkAnswer();
 
   nextQuestion();
 });
@@ -89,15 +90,14 @@ $("#answer3").on("click", function () {
   console.log("YOU CLICKED BUTTON 3");
   answerChoice = 3;
   checkAnswer();
-  
-  nextQuestion();
+    nextQuestion();
 
 });
 
 $("#answer4").on("click", function () {
   console.log("YOU CLICKED BUTTON 4");
   answerChoice = 4;
-
+  checkAnswer();
   nextQuestion();
 
 });
@@ -115,9 +115,13 @@ function nextQuestion() {
 function checkAnswer() {
   if (answerChoice === correctAnswer){
     $("#footer").show();
-    $("#footer").text("Correct!");
-    $("#footer").animate({opacity: "0"});
+    $("#footer").text("GOOD JOB!");
+    $("#footer").fadeOut(5000);
 
+  } else {
+    $("#footer").show();
+    $("#footer").text("INCORRECT!");
+    $("#footer").fadeOut(5000);
 
   }
 
