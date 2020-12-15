@@ -54,13 +54,19 @@ var i = 0;
 var answerChoice = 0;
 var correctAnswer =0;
 var timer = 100;
-var submitScore = [];
-var submitName = [];
+var submitScore = {
+  name: [],
+  score: [],
+};
+var retrieveScore = JSON.parse(localStorage.getItem("Score"));
+
+
 
 $(document).ready(function () {
   $("p").hide();
   $("form").hide();
   $("#timer").hide();
+  $("#high-scores-container").hide();
 });
 
 $("#question").text("Welcome to the API Code Quiz! Click the button to begin!");
@@ -95,16 +101,10 @@ $("#answer4").on("click", function () {
   checkAnswer();
 });
 
-$("#submit").on("click", function() {
-  event.preventDefault();
-  var setName = $("#name").val();
-  console.log(setName);
-  $("p").hide();
-
-
-
-
+$("#leaderboard-link").on("click", function() {
+  highScores();
 });
+
 
 function nextQuestion() {
   $("#question").text(quizQuestions[i].question);
@@ -145,6 +145,36 @@ function endQuiz() {
   stopTimer();
   $("#timer").hide();
   $("#final-score").attr("value", timer);
+
+  $("#submit").on("click", function() {
+    event.preventDefault();
+    if (retrieveScore !== null) {
+      highScoreName = $("#name").val();
+    submitScore.name.push(retrieveScore.name);
+    submitScore.score.push(retrieveScore.score);
+    submitScore.name.push(highScoreName);
+    submitScore.score.push(timer);
+    localStorage.setItem("Score", JSON.stringify(submitScore));
+
+    console.log("PREVIOUS DATA IN STORAGE!")
+    console.log(submitScore);
+
+    highScores();
+    
+    } else {
+
+    highScoreName = $("#name").val();
+    submitScore.name.push(highScoreName);
+    submitScore.score.push(timer);
+    localStorage.setItem("Score", JSON.stringify(submitScore));
+    console.log("NO PREVIOUS DATA IN STORAGE")
+    console.log(submitScore);
+
+
+    highScores();
+    }
+  })
+
 }
 
 function startTimer() {
@@ -156,4 +186,10 @@ timer--;
 
 function stopTimer() {
   clearInterval(timerInterval);
+}
+
+function highScores () {
+  $("#main-container").hide();
+  $("#high-scores-container").show();
+  retrieveScore = JSON.parse(localStorage.getItem("Score"));
 }
