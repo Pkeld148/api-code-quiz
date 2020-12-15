@@ -141,10 +141,13 @@ function checkAnswer() {
 }
 
 function endQuiz() {
-  $("#question").text("GAME OVER!  How did you do?");
+  $("#question").text("GAME OVER! Now submit your score!");
   $("p").hide();
   $("form").show();
   stopTimer();
+  $("#timer").hide();
+
+  $("#final-score").attr("value", timer);
 }
 
 function startTimer() {

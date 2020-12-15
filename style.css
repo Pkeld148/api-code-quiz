@@ -1,6 +1,8 @@
 h2 {
     text-align: center;
 }
-/* #footer {
-    opacity: 100%;
-} */
+#final-score {
+    font-size: 48px;
+    font-weight: bolder;
+    width: 100px;
+}
