@@ -1,47 +1,62 @@
-var openingTitle = "Welcome to the API Code Quiz! \nClick the button to begin!"
 var quizQuestions = [
-  "Commonly used data types DO NOT include:",
-  "The condition in an if / else statement is enclosed within _____",
-  "Arrays in JavaScript can be used to store _____",
-  "String values must be enclosed within _____ when being assigned to variables.",
-  "A very useful tool used during development and debugging for printing content to the debugger is:",
+  {
+    question: "Commonly used data types DO NOT include:",
+    possibleAnswers: ["1. Strings", "2. Booleans", "3. Alerts", "4. Numbers"],
+    correct: 3,
+  },
+  {
+    question:
+      "The condition in an if / else statement is enclosed within _____",
+    possibleAnswers: [
+      "1. Quotes",
+      "2. Curly Brackets",
+      "3. Parenthesis",
+      "4. Square Brackets",
+    ],
+    correct: 3,
+  },
+  {
+    question: "Arrays in JavaScript can be used to store _____",
+    possibleAnswers: [
+      "1. Numbers and Strings",
+      "2. Other Arrays",
+      "3. Booleans",
+      "4. All of the Above",
+    ],
+    correct: 4,
+  },
+  {
+    question:
+      "String values must be enclosed within _____ when being assigned to variables.",
+    possibleAnswers: [
+      "1. Commas",
+      "2. Curly Brackets",
+      "3. Quotes",
+      "4. Parenthesis",
+    ],
+    correct: 3,
+  },
+  {
+    question:
+      "A very useful tool used during development and debugging for printing content to the debugger is:",
+    possibleAnswers: [
+      "1. JavaScript",
+      "2. Terminal/Bash",
+      "3. For Loops",
+      "4. Console.log",
+    ],
+    correct: 4,
+  },
 ];
-var answersQuestionOne = [
-  "1. Strings",
-  "2. Booleans",
-  "3. Alerts",
-  "4. Numbers",
-];
-var answersQuestionTwo = [
-  "1. Quotes",
-  "2. Curly Brackets",
-  "3. Parenthesis",
-  "4. Square Brackets",
-];
-var answersQuestionThree = [
-  "1. Numbers and Strings",
-  "2. Other Arrays",
-  "3. Booleans",
-  "4. All of the Above",
-];
-var answersQuestionFour = [
-  "1. Commas",
-  "2. Curly Brackets",
-  "3. Quotes",
-  "4. Parenthesis",
-];
-var answersQuestionFive = [
-  "1. JavaScript",
-  "2. Terminal/Bash",
-  "3. For Loops",
-  "4. Console.log",
-];
-var correctAnswer = [3, 3, 4, 3, 4];
+// Used as a counter for which question user is on
+var i = 0;
 
-$(document).ready(function() {
+var answerChoice = 0;
+var correctAnswer =0;
+
+$(document).ready(function () {
   $("p").hide();
 });
-
 
 $("#question").text("Welcome to the API Code Quiz! Click the button to begin!");
 $("#footer").text("WARNING: Incorrect answers will deduct 10 seconds!");
@@ -51,80 +66,59 @@ $("#start").on("click", function () {
   $("p").show();
   $("#footer").hide();
   $("h3").hide();
+
+  nextQuestion();
+
 });
 
-// $("#question").text(quizQuestions[1]);
+$("#answer1").on("click", function () {
+  console.log("YOU CLICKED BUTTON 1");
+  answerChoice = 1;
+  checkAnswer();
+  nextQuestion();
+  });
+
+$("#answer2").on("click", function () {
+  console.log("YOU CLICKED BUTTON 2");
+  answerChoice = 2;
+
+  nextQuestion();
+});
+
+$("#answer3").on("click", function () {
+  console.log("YOU CLICKED BUTTON 3");
+  answerChoice = 3;
+  checkAnswer();
+  
+  nextQuestion();
+
+});
+
+$("#answer4").on("click", function () {
+  console.log("YOU CLICKED BUTTON 4");
+  answerChoice = 4;
+
+  nextQuestion();
+
+});
+
+function nextQuestion() {
+  $("#question").text(quizQuestions[i].question);
+  $("#answer1").text(quizQuestions[i].possibleAnswers[0]);
+  $("#answer2").text(quizQuestions[i].possibleAnswers[1]);
+  $("#answer3").text(quizQuestions[i].possibleAnswers[2]);
+  $("#answer4").text(quizQuestions[i].possibleAnswers[3]);
+  correctAnswer = quizQuestions[i].correct;
+    i++;
+}
+
+function checkAnswer() {
+  if (answerChoice === correctAnswer){
+    $("#footer").show();
+    $("#footer").text("Correct!");
+    $("#footer").animate({opacity: "0"});
 
 
-//  var quizQuestionAnswers = {
-//     answersQuestionOne = [
-//         "1. Strings",
-//         "2. Booleans",
-//         "3. Alerts",
-//         "4. Numbers",
-//       ],
-//       answersQuestionTwo = [
-//         "1. Quotes",
-//         "2. Curly Brackets",
-//         "3. Parenthesis",
-//         "4. Square Brackets",
-//       ],
-//       answersQuestionThree = [
-//         "1. Numbers and Strings",
-//         "2. Other Arrays",
-//         "3. Booleans",
-//         "4. All of the Above",
-//       ],
-//       answersQuestionFour = [
-//         "1. Commas",
-//         "2. Curly Brackets",
-//         "3. Quotes",
-//         "4. Parenthesis",
-//       ],
-//       answersQuestionFive = [
-//         "1. JavaScript",
-//         "2. Terminal/Bash",
-//         "3. For Loops",
-//         "4. Console.log",
-//       ]
-//  }
+  }
 
-// var answersQuestionOne = [
-//   "1. Strings",
-//   "2. Booleans",
-//   "3. Alerts",
-//   "4. Numbers",
-// ];
-// var answersQuestionTwo = [
-//   "1. Quotes",
-//   "2. Curly Brackets",
-//   "3. Parenthesis",
-//   "4. Square Brackets",
-// ];
-// var answersQuestionThree = [
-//   "1. Numbers and Strings",
-//   "2. Other Arrays",
-//   "3. Booleans",
-//   "4. All of the Above",
-// ];
-// var answersQuestionFour = [
-//   "1. Commas",
-//   "2. Curly Brackets",
-//   "3. Quotes",
-//   "4. Parenthesis",
-// ];
-// var answersQuestionFive = [
-//   "1. JavaScript",
-//   "2. Terminal/Bash",
-//   "3. For Loops",
-//   "4. Console.log",
-// ];
-
-// var questionOne = "Commonly used data types DO NOT include:";
-// var questionTwo =
-//   "The condition in an if / else statement is enclosed within _____";
-// var questionThree = "Arrays in JavaScript can be used to store _____";
-// var questionFour =
-//   "String values must be enclosed within _____ when being assigned to variables.";
-// var questionFive =
-//   "A very useful tool used during development and debugging for printing content to the debugger is:";
+}
